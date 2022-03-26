@@ -29,21 +29,26 @@
                 <div class="row">
                     @foreach ($popularProducts as $popular)
                         <div class="col-lg-4 col-md-6 item-entry mb-4">
-                            <a href="{{ route('product_detail', ['id' => $popular->id]) }}"
-                                class="product-item md-height bg-gray d-block">
-                                <img src="{{ $popular->image }}" alt="Image" class="img-fluid">
-                            </a>
-                            <h2 class="item-title"><a href="#">{{ $popular->title }}</a></h2>
-                            <strong class="item-price">$ {{ $popular->price }}</strong>
+                            <div class="card">
+                                <div class="card-body">
+                                    <a href="{{ route('product_detail', ['slug' => $popular->slug]) }}">
+                                        <img src="{{ asset('storage') }}/{{ $popular->image }}"
+                                            alt="{{ $popular->title }}" style="width:100%;">
+                                    </a>
+                                    <h2 class="item-title" style="margin: 10px 0px"><a
+                                            href="{{ route('product_detail', ['slug' => $popular->slug]) }}">{{ $popular->title }}</a>
+                                    </h2>
+                                    <strong class="item-price">$ {{ $popular->price }}</strong>
 
-                            <div class="star-rating">
-                                <span class="icon-star2 text-warning"></span>
-                                <span class="icon-star2 text-warning"></span>
-                                <span class="icon-star2 text-warning"></span>
-                                <span class="icon-star2 text-warning"></span>
-                                <span class="icon-star2 text-warning"></span>
+                                    <div class="star-rating">
+                                        <span class="icon-star2 text-warning"></span>
+                                        <span class="icon-star2 text-warning"></span>
+                                        <span class="icon-star2 text-warning"></span>
+                                        <span class="icon-star2 text-warning"></span>
+                                        <span class="icon-star2 text-warning"></span>
+                                    </div>
+                                </div>
                             </div>
-
                         </div>
                     @endforeach
 
@@ -63,21 +68,26 @@
                         <div class="nonloop-block-3 owl-carousel">
                             @foreach ($popularProducts as $popular)
                                 <div class="item">
+                                    <div class="card">
+                                        <div class="card-body">
+                                            <a href="{{ route('product_detail', ['slug' => $popular->slug]) }}">
+                                                <img src="{{ asset('storage') }}/{{ $popular->image }}"
+                                                    alt="{{ $popular->title }}" style="width:100%;">
+                                            </a>
+                                            <h4 class="item-title" style="margin: 10px 0px"><a
+                                                    href="{{ route('product_detail', ['slug' => $popular->slug]) }}">{{ $popular->title }}</a>
+                                            </h4>
+                                            <strong class="item-price">$ {{ $popular->price }}</strong>
 
-                                    <a href="#" class="product-item md-height bg-gray d-block">
-                                        <img src="{{ $popular->image }}" alt="Image" class="img-fluid">
-                                    </a>
-                                    <h2 class="item-title"><a href="#">{{ $popular->title }}</a></h2>
-                                    <strong class="item-price">$ {{ $popular->price }}</strong>
-
-                                    <div class="star-rating">
-                                        <span class="icon-star2 text-warning"></span>
-                                        <span class="icon-star2 text-warning"></span>
-                                        <span class="icon-star2 text-warning"></span>
-                                        <span class="icon-star2 text-warning"></span>
-                                        <span class="icon-star2 text-warning"></span>
+                                            <div class="star-rating">
+                                                <span class="icon-star2 text-warning"></span>
+                                                <span class="icon-star2 text-warning"></span>
+                                                <span class="icon-star2 text-warning"></span>
+                                                <span class="icon-star2 text-warning"></span>
+                                                <span class="icon-star2 text-warning"></span>
+                                            </div>
+                                        </div>
                                     </div>
-
                                 </div>
                             @endforeach
 
@@ -100,7 +110,7 @@
                         </div>
                     </div>
                     <div class="col-md-6 order-1 align-self-end">
-                        <img src="images/model_6.png" alt="Image" class="img-fluid">
+                        <img src="{{ asset('users/images/model_6.png') }}" alt="Image" class="img-fluid">
                     </div>
                 </div>
             </div>

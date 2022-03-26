@@ -7,10 +7,16 @@
                 <div class="row">
                     <div class="col-md-12 mb-0"><a href="index.html">Home</a> <span class="mx-2 mb-0">/</span> <a
                             href="shop.html">Shop</a> <span class="mx-2 mb-0">/</span> <strong
-                            class="text-black">Gray Shoe</strong></div>
+                            class="text-black">{{ $single_product->title }}</strong></div>
                 </div>
             </div>
         </div>
+        @if (session()->has('exist'))
+            <div class="alert alert-danger custom-success">
+                <strong>{!! session('exist') !!}</strong>
+            </div>
+        @endif
+
 
         <div class="site-section">
             <div class="container">
@@ -18,9 +24,9 @@
                     <div class="col-md-6">
                         <div class="item-entry">
                             <a href="#" class="product-item md-height bg-gray d-block">
-                                <img src="{{ $single_product->image }}" alt="Image" class="img-fluid">
+                                <img src="{{ asset('storage') }}/{{ $single_product->image }}"
+                                    alt="{{ $single_product->title }}" class="img-fluid">
                             </a>
-
                         </div>
 
                     </div>
@@ -50,29 +56,11 @@
                                         name="shop-sizes"></span> <span class="d-inline-block text-black"> Extra
                                     Large</span>
                             </label>
+                            @error('size')
+                                <span class="text-danger">{{ $message }}</span>
+                            @enderror
                         </div>
-                        {{-- <div class="mb-1 d-flex">
-                            <label for="option-sm" class="d-flex mr-3 mb-3">
-                                <span class="d-inline-block mr-2" style="top:-2px; position: relative;"><input
-                                        type="radio" value="1" wire:model="color" id="black" name="shop-color"></span>
-                                <span class="d-inline-block text-black">Black</span>
-                            </label>
-                            <label for="option-md" class="d-flex mr-3 mb-3">
-                                <span class="d-inline-block mr-2" style="top:-2px; position: relative;"><input
-                                        type="radio" id="option-md" value="2" wire:model="color"
-                                        name="shop-sizes"></span> <span class="d-inline-block text-black">Red</span>
-                            </label>
-                            <label for="option-lg" class="d-flex mr-3 mb-3">
-                                <span class="d-inline-block mr-2" style="top:-2px; position: relative;"><input value="3"
-                                        wire:model="color" type="radio" id="option-lg" name="shop-sizes"></span> <span
-                                    class="d-inline-block text-black">green</span>
-                            </label>
-                            <label for="option-xl" class="d-flex mr-3 mb-3">
-                                <span class="d-inline-block mr-2" style="top:-2px; position: relative;"><input
-                                        type="radio" id="option-xl" value="4" wire:model="color"
-                                        name="shop-sizes"></span> <span class="d-inline-block text-black">Blue</span>
-                            </label>
-                        </div> --}}
+
                         <div class="mb-5">
                             <div class="input-group mb-3" style="max-width: 120px;">
                                 <div class="input-group-prepend">
@@ -110,217 +98,115 @@
         </div>
         <div class="row px-xl-5">
             <div class="col">
-                <div class="nav nav-tabs justify-content-center border-secondary mb-4">
-                    <a class="nav-item nav-link active" data-toggle="tab" href="#tab-pane-1">Description</a>
-                    <a class="nav-item nav-link" data-toggle="tab" href="#tab-pane-3">Reviews
-                        ({{ count($getReviews) }})</a>
+                <div class="tab-pane fade show active">
+                    <h4 class="mb-3">Product Description</h4>
+                    <p>{{ $single_product->long_desc }}</p>
                 </div>
                 <div class="tab-content">
-                    <div class="tab-pane fade show active" id="tab-pane-1">
-                        <h4 class="mb-3">Product Description</h4>
-                        <p>{{ $single_product->long_desc }}</p>
-                    </div>
-                    <div class="tab-pane fade" id="tab-pane-3">
-                        <div class="row">
-                            <div class="col-md-6">
-                                <h4 class="mb-4">{{ count($getReviews) }} review for
-                                    "{{ $single_product->title }}"</h4>
-                                <div class="media mb-4">
-                                    <div class="media-body">
-                                        @foreach ($getReviews as $getReview)
-                                            <h6>{{ $getReview->users->username }}<small> -
-                                                    <i>{{ $getReview->created_at->format('d/m/Y') }}
-                                                    </i></small>
-                                            </h6>
-                                            <div class="text-primary mb-2">
-                                                @if ($getReview->rating == 1)
-                                                    <i class="fas fa-star"></i>
-                                                    <i class="far fa-star"></i>
-                                                    <i class="far fa-star"></i>
-                                                    <i class="far fa-star"></i>
-                                                    <i class="far fa-star"></i>
-                                                @endif
+                    <div class="row">
+                        <div class="col-md-6">
+                            <h4 class="mb-4">{{ count($getReviews) }} review for
+                                "{{ $single_product->title }}"</h4>
+                            <div class="media mb-4">
+                                <div class="media-body">
+                                    @foreach ($getReviews as $getReview)
+                                        <h6>{{ $getReview->users->username }}<small> -
+                                                <i>{{ $getReview->created_at->format('d/m/Y') }}
+                                                </i></small>
+                                        </h6>
+                                        <div class="text-primary mb-2">
+                                            @if ($getReview->rating == 1)
+                                                <i class="fas fa-star"></i>
+                                                <i class="far fa-star"></i>
+                                                <i class="far fa-star"></i>
+                                                <i class="far fa-star"></i>
+                                                <i class="far fa-star"></i>
+                                            @endif
 
-                                                @if ($getReview->rating == 2)
-                                                    <i class="fas fa-star"></i>
-                                                    <i class="fas fa-star"></i>
-                                                    <i class="far fa-star"></i>
-                                                    <i class="far fa-star"></i>
-                                                    <i class="far fa-star"></i>
-                                                @endif
+                                            @if ($getReview->rating == 2)
+                                                <i class="fas fa-star"></i>
+                                                <i class="fas fa-star"></i>
+                                                <i class="far fa-star"></i>
+                                                <i class="far fa-star"></i>
+                                                <i class="far fa-star"></i>
+                                            @endif
 
-                                                @if ($getReview->rating == 3)
-                                                    <i class="fas fa-star"></i>
-                                                    <i class="fas fa-star"></i>
-                                                    <i class="fas fa-star"></i>
-                                                    <i class="far fa-star"></i>
-                                                    <i class="far fa-star"></i>
-                                                @endif
+                                            @if ($getReview->rating == 3)
+                                                <i class="fas fa-star"></i>
+                                                <i class="fas fa-star"></i>
+                                                <i class="fas fa-star"></i>
+                                                <i class="far fa-star"></i>
+                                                <i class="far fa-star"></i>
+                                            @endif
 
-                                                @if ($getReview->rating == 4)
-                                                    <i class="fas fa-star"></i>
-                                                    <i class="fas fa-star"></i>
-                                                    <i class="fas fa-star"></i>
-                                                    <i class="fas fa-star"></i>
-                                                    <i class="far fa-star"></i>
-                                                @endif
+                                            @if ($getReview->rating == 4)
+                                                <i class="fas fa-star"></i>
+                                                <i class="fas fa-star"></i>
+                                                <i class="fas fa-star"></i>
+                                                <i class="fas fa-star"></i>
+                                                <i class="far fa-star"></i>
+                                            @endif
 
-                                                @if ($getReview->rating == 5)
-                                                    <i class="fas fa-star"></i>
-                                                    <i class="fas fa-star"></i>
-                                                    <i class="fas fa-star"></i>
-                                                    <i class="fas fa-star"></i>
-                                                    <i class="fas fa-star"></i>
-                                                @endif
+                                            @if ($getReview->rating == 5)
+                                                <i class="fas fa-star"></i>
+                                                <i class="fas fa-star"></i>
+                                                <i class="fas fa-star"></i>
+                                                <i class="fas fa-star"></i>
+                                                <i class="fas fa-star"></i>
+                                            @endif
 
-                                                @if ($getReview->rating == 1)
-                                                    <i class="fas fa-star"></i>
-                                                    <i class="far fa-star"></i>
-                                                    <i class="far fa-star"></i>
-                                                    <i class="far fa-star"></i>
-                                                    <i class="far fa-star"></i>
-                                                @endif
+                                            @if ($getReview->rating == 1)
+                                                <i class="fas fa-star"></i>
+                                                <i class="far fa-star"></i>
+                                                <i class="far fa-star"></i>
+                                                <i class="far fa-star"></i>
+                                                <i class="far fa-star"></i>
+                                            @endif
 
 
-                                            </div>
-                                            <p>{{ $getReview->reviews }}</p>
-                                        @endforeach
+                                        </div>
+                                        <p>{{ $getReview->reviews }}</p>
+                                    @endforeach
 
-                                    </div>
                                 </div>
                             </div>
-                            <div class="col-md-6">
-                                <h4 class="mb-4">Leave a review</h4>
-                                <small>Your email address will not be published. Required fields are marked *</small>
-                                <div class="d-flex my-3">
+                        </div>
+                        <div class="col-md-6">
+                            <h4 class="mb-4">Leave a review</h4>
+                            <small>Your email address will not be published. Required fields are marked *</small>
+                            <form wire:submit.prevent="review({{ $single_product->id }})" wire:ignore>
+                                <div class="form-group">
+                                    <p class="mb-0 mr-2">Your Rating * :</p>
 
-                                    {{-- <div class="text-primary">
-                                        <i class="far fa-star"></i>
-                                        <i class="far fa-star"></i>
-                                        <i class="far fa-star"></i>
-                                        <i class="far fa-star"></i>
-                                    </div> --}}
+                                    <select class="form-control" wire:model.lazy="rating">
+                                        <option value="1">1</option>
+                                        <option value="2">2</option>
+                                        <option value="3">3</option>
+                                        <option value="4">4</option>
+                                        <option value="5">5</option>
+                                    </select>
+                                    @error('rating')
+                                        <span class="text-danger">{{ $message }}</span>
+                                    @enderror
                                 </div>
-                                <form wire:submit.prevent="review({{ $single_product->id }})" wire:ignore>
-                                    <div class="form-group">
-                                        <p class="mb-0 mr-2">Your Rating * :</p>
-
-                                        <select class="form-control" wire:model.lazy="rating">
-                                            <option value="1">1</option>
-                                            <option value="2">2</option>
-                                            <option value="3">3</option>
-                                            <option value="4">4</option>
-                                            <option value="5">5</option>
-                                        </select>
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="message">Your Review *</label>
-                                        <textarea id="message" wire:model.lazy="reviews" cols="30" rows="5" class="form-control"></textarea>
-                                    </div>
+                                <div class="form-group">
+                                    <label for="message">Your Review *</label>
+                                    <textarea wire:model.lazy="reviews" cols="30" rows="5" class="form-control"></textarea>
+                                    @error('reviews')
+                                        <span class="text-danger">{{ $message }}</span>
+                                    @enderror
+                                </div>
+                                @auth
                                     <div class="form-group mb-0">
                                         <input type="submit" value="Leave Your Review" class="btn btn-primary px-3">
                                     </div>
-                                </form>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="site-section block-3 site-blocks-2">
-            <div class="container">
-                <div class="row justify-content-center">
-                    <div class="col-md-7 site-section-heading text-center pt-4">
-                        <h2>Featured Products</h2>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-md-12 block-3">
-                        <div class="nonloop-block-3 owl-carousel">
-                            <div class="item">
-                                <div class="item-entry">
-                                    <a href="#" class="product-item md-height bg-gray d-block">
-                                        <img src="images/model_1.png" alt="Image" class="img-fluid">
-                                    </a>
-                                    <h2 class="item-title"><a href="#">Smooth Cloth</a></h2>
-                                    <strong class="item-price"><del>$46.00</del> $28.00</strong>
-                                    <div class="star-rating">
-                                        <span class="icon-star2 text-warning"></span>
-                                        <span class="icon-star2 text-warning"></span>
-                                        <span class="icon-star2 text-warning"></span>
-                                        <span class="icon-star2 text-warning"></span>
-                                        <span class="icon-star2 text-warning"></span>
+                                @endauth
+                                @guest
+                                    <div class="form-group mb-0">
+                                        <a href="{{ route('login') }}" class="btn btn-primary px-3">Leave Your Review</a>
                                     </div>
-                                </div>
-                            </div>
-                            <div class="item">
-                                <div class="item-entry">
-                                    <a href="#" class="product-item md-height bg-gray d-block">
-                                        <img src="images/prod_3.png" alt="Image" class="img-fluid">
-                                    </a>
-                                    <h2 class="item-title"><a href="#">Blue Shoe High Heels</a></h2>
-                                    <strong class="item-price"><del>$46.00</del> $28.00</strong>
-
-                                    <div class="star-rating">
-                                        <span class="icon-star2 text-warning"></span>
-                                        <span class="icon-star2 text-warning"></span>
-                                        <span class="icon-star2 text-warning"></span>
-                                        <span class="icon-star2 text-warning"></span>
-                                        <span class="icon-star2 text-warning"></span>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="item">
-                                <div class="item-entry">
-                                    <a href="#" class="product-item md-height bg-gray d-block">
-                                        <img src="images/model_5.png" alt="Image" class="img-fluid">
-                                    </a>
-                                    <h2 class="item-title"><a href="#">Denim Jacket</a></h2>
-                                    <strong class="item-price"><del>$46.00</del> $28.00</strong>
-
-                                    <div class="star-rating">
-                                        <span class="icon-star2 text-warning"></span>
-                                        <span class="icon-star2 text-warning"></span>
-                                        <span class="icon-star2 text-warning"></span>
-                                        <span class="icon-star2 text-warning"></span>
-                                        <span class="icon-star2 text-warning"></span>
-                                    </div>
-
-                                </div>
-                            </div>
-                            <div class="item">
-                                <div class="item-entry">
-                                    <a href="#" class="product-item md-height bg-gray d-block">
-                                        <img src="images/prod_1.png" alt="Image" class="img-fluid">
-                                    </a>
-                                    <h2 class="item-title"><a href="#">Leather Green Bag</a></h2>
-                                    <strong class="item-price"><del>$46.00</del> $28.00</strong>
-                                    <div class="star-rating">
-                                        <span class="icon-star2 text-warning"></span>
-                                        <span class="icon-star2 text-warning"></span>
-                                        <span class="icon-star2 text-warning"></span>
-                                        <span class="icon-star2 text-warning"></span>
-                                        <span class="icon-star2 text-warning"></span>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="item">
-                                <div class="item-entry">
-                                    <a href="#" class="product-item md-height bg-gray d-block">
-                                        <img src="images/model_7.png" alt="Image" class="img-fluid">
-                                    </a>
-                                    <h2 class="item-title"><a href="#">Yellow Jacket</a></h2>
-                                    <strong class="item-price">$58.00</strong>
-                                    <div class="star-rating">
-                                        <span class="icon-star2 text-warning"></span>
-                                        <span class="icon-star2 text-warning"></span>
-                                        <span class="icon-star2 text-warning"></span>
-                                        <span class="icon-star2 text-warning"></span>
-                                        <span class="icon-star2 text-warning"></span>
-                                    </div>
-                                </div>
-                            </div>
-
+                                @endguest
+                            </form>
                         </div>
                     </div>
                 </div>

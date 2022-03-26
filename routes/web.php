@@ -13,11 +13,12 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('/card', Card::class)->name('card');
 });
 
-// Route::group(['middleware' => 'guest'], function () {
-Route::get('/signup', SignUp::class)->name('signup');
-Route::get('/login', Login::class)->name('login');
-// });
+Route::group(['middleware' => 'guest'], function () {
+    Route::get('/signup', SignUp::class)->name('signup');
+    Route::get('/login', Login::class)->name('login');
+});
 
 Route::get('/', Home::class)->name('home');
 Route::get('/shop', Shop::class)->name('shop');
-Route::get('/single-product/{id}', ProductDetail::class)->name('product_detail');
+Route::get('/single-product/{slug}', ProductDetail::class)->name('product_detail');
+require __DIR__ . '/admin.php';

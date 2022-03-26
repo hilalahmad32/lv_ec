@@ -11,7 +11,7 @@ use Livewire\Component;
 class ProductDetail extends Component
 {
 
-    public $pro_id;
+    public $slug;
     public $single_product;
     public $rating;
     public $reviews;
@@ -22,14 +22,15 @@ class ProductDetail extends Component
     public $getReviews;
 
     public $qty = 1;
-    public function mount($id)
+    public function mount($slug)
     {
-        $this->pro_id = $id;
+        $this->slug = $slug;
+        Product::whereSlug($slug)->increment('views', 1);
     }
     public function render()
     {
-        $this->single_product = Product::findOrFail($this->pro_id);
-        $this->getReviews = Review::where('pro_id', $this->pro_id)->orderBy('id', 'DESC')->get();
+        $this->single_product = Product::where('slug', $this->slug)->first();
+        $this->getReviews = Review::where('pro_id', $this->single_product->id)->orderBy('id', 'DESC')->get();
         return view('livewire.product-detail')->layout('layout.app');
     }
 
@@ -48,7 +49,7 @@ class ProductDetail extends Component
         $reviews->save();
 
         $this->rating = "";
-        $this->review = "";
+        $this->reviews = "";
     }
 
     public function increment()
@@ -69,8 +70,11 @@ class ProductDetail extends Component
         $price = $products->price;
         $is_product = AddToCard::where('pro_id', $id)->first();
         if ($is_product) {
-            dd("already in card only update this one");
+            session()->flash('exist', 'Product already in card,Chose another one or update the card <a href="/card">Card</a> ');
         } else {
+            $this->validate([
+                'size' => ['required'],
+            ]);
             $cards = new AddToCard();
             $totalPrice = $this->qty * $price;
             $cards->pro_id = $id;

@@ -27,7 +27,7 @@ class Signup extends Component
             'fname' => ['required', 'string', 'max:10', 'min:3'],
             'lname' => ['required', 'string', 'max:10', 'min:3'],
             'username' => ['required', 'string', 'max:15', 'min:3',],
-            'email' => ['required', 'email', 'max:20', 'min:10', 'unique:users'],
+            'email' => ['required', 'email', 'max:30', 'min:10', 'unique:users'],
             'password' => ['required', 'string', 'max:15', 'min:6'],
         ]);
 
@@ -38,6 +38,14 @@ class Signup extends Component
         $users->username = $this->username;
         $users->password = Hash::make($this->password);
         $result = $users->save();
-        return redirect(route('shop'));
+        if ($result) {
+            session()->flash('success', 'Signup Successfully Now you cand login ');
+            $this->fname = "";
+            $this->lname = "";
+            $this->email = "";
+            $this->username = "";
+            $this->password = "";
+            return redirect(route('login'));
+        }
     }
 }

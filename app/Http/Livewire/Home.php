@@ -11,7 +11,7 @@ class Home extends Component
     public $ratedProducts;
     public function render()
     {
-        $this->popularProducts = Product::orderBy('id', 'DESC')->limit(6)->get();
+        $this->popularProducts = Product::where('views', '>', 0)->limit(6)->get();
         $this->ratedProducts = Product::orderBy('id', 'DESC')->limit(6)->get();
         return view('livewire.home')->layout('layout.app');
     }

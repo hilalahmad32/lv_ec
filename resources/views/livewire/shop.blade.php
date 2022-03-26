@@ -40,18 +40,25 @@
                         <div class="row mb-5">
                             @foreach ($products as $product)
                                 <div class="col-lg-6 col-md-6 item-entry mb-4">
-                                    <a href="#" class="product-item md-height bg-gray d-block">
-                                        <img src="{{ $product->image }}" alt="Image" class="img-fluid">
-                                    </a>
-                                    <h2 class="item-title"><a href="#">{{ $product->title }}</a></h2>
-                                    <strong class="item-price">${{ $product->price }}</strong>
+                                    <div class="card">
+                                        <div class="card-body">
+                                            <a href="{{ route('product_detail', ['slug' => $product->slug]) }}">
+                                                <img src="{{ asset('storage') }}/{{ $product->image }}"
+                                                    alt="{{ $product->title }}" style="width:100%;">
+                                            </a>
+                                            <h2 class="item-title" style="margin: 10px 0px"><a
+                                                    href="{{ route('product_detail', ['slug' => $product->slug]) }}">{{ $product->title }}</a>
+                                            </h2>
+                                            <strong class="item-price">$ {{ $product->price }}</strong>
 
-                                    <div class="star-rating">
-                                        <span class="icon-star2 text-warning"></span>
-                                        <span class="icon-star2 text-warning"></span>
-                                        <span class="icon-star2 text-warning"></span>
-                                        <span class="icon-star2 text-warning"></span>
-                                        <span class="icon-star2 text-warning"></span>
+                                            <div class="star-rating">
+                                                <span class="icon-star2 text-warning"></span>
+                                                <span class="icon-star2 text-warning"></span>
+                                                <span class="icon-star2 text-warning"></span>
+                                                <span class="icon-star2 text-warning"></span>
+                                                <span class="icon-star2 text-warning"></span>
+                                            </div>
+                                        </div>
                                     </div>
 
                                 </div>
@@ -62,18 +69,8 @@
 
                         <div class="row">
                             <div class="col-md-12 text-center">
-
-                                {{ $products->links() }}
-                                <div class="site-block-27">
-                                    <ul>
-                                        <li><a href="#">&lt;</a></li>
-                                        <li class="active"><span>1</span></li>
-                                        <li><a href="#">2</a></li>
-                                        <li><a href="#">3</a></li>
-                                        <li><a href="#">4</a></li>
-                                        <li><a href="#">5</a></li>
-                                        <li><a href="#">&gt;</a></li>
-                                    </ul>
+                                <div class="">
+                                    <a href="#" wire:click.prevent='loadMore'>Load More</a></li>
                                 </div>
                             </div>
                         </div>
@@ -97,6 +94,7 @@
                             <ul class="list-unstyled mb-0">
                                 @foreach ($brands as $brand)
                                     <li class="mb-1"><a href="#"
+                                            wire:click.prevent='getProuductByCat({{ $brand->id }})'
                                             class="d-flex"><span>{{ $brand->brand_name }}</span> <span
                                                 class="text-black ml-auto">(2,220)</span></a></li>
                                 @endforeach

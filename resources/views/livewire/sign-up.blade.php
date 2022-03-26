@@ -3,6 +3,11 @@
         SignUp
         </x-slot>
         <div class="container my-5">
+            @if (session()->has('success'))
+                <div class="alert alert-success custom-success">
+                    <strong>{{ session('success') }}</strong>
+                </div>
+            @endif
             <div class="row d-flex justify-content-center">
                 <div class="col-lg-8 col-xl-8 col-md-8">
                     <h1 class="h3 mb-3 text-center text-black ">Sign Up</h1>
@@ -63,6 +68,9 @@
                             <div class="form-group row">
                                 <div class="col-lg-12">
                                     <input type="submit" class="btn btn-primary btn-lg btn-block" value="Sign Up">
+                                </div>
+                                <div class='text-center my-3'>
+                                    <span>Already have Account ? <a href="{{ route('login') }}">Login</a> </span>
                                 </div>
                             </div>
                         </div>

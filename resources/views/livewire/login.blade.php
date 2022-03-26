@@ -3,6 +3,16 @@
         Login
         </x-slot>
         <div class="container my-5">
+            @if (session()->has('success'))
+                <div class="alert alert-success custom-success">
+                    <strong>{{ session('success') }}</strong>
+                </div>
+            @endif
+            @if (session()->has('error'))
+                <div class="alert alert-danger custom-success">
+                    <strong>{{ session('error') }}</strong>
+                </div>
+            @endif
             <div class="row d-flex justify-content-center">
                 <div class="col-lg-8 col-xl-8 col-md-8">
                     <h1 class="h3 mb-3 text-center text-black ">Login</h1>
@@ -34,6 +44,9 @@
                             <div class="form-group row">
                                 <div class="col-lg-12">
                                     <input type="submit" class="btn btn-primary btn-lg btn-block" value="Login">
+                                </div>
+                                <div class='text-center my-3'>
+                                    <span>Don't have Account ? <a href="{{ route('signup') }}">Signup</a> </span>
                                 </div>
                             </div>
                         </div>

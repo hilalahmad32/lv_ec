@@ -19,13 +19,16 @@ class Login extends Component
     public function login()
     {
         $this->validate([
-            'email' => ['required', 'email', 'max:20', 'min:10'],
+            'email' => ['required', 'email', 'max:30', 'min:10'],
             'password' => ['required', 'string', 'max:15', 'min:6'],
         ]);
 
         $user = Auth::attempt(['email' => $this->email, 'password' => $this->password]);
         if ($user) {
-            return redirect(route('shop'));
+            session()->flash('success', 'Login Successfully');
+            return redirect(route('home'));
+        } else {
+            session()->flash('error', 'Invalid email and password');
         }
     }
 }

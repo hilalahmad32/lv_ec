@@ -28,12 +28,24 @@
 
     @livewireStyles
 </head>
+<style>
+    .custom-success {
+        position: fixed;
+        top: 3%;
+        right: 2%;
+        /* width: 5%; */
+        z-index: 9999;
+    }
+
+</style>
 
 <body>
 
+    {{-- <div class="alert alert-success custom-success">
+        <strong></strong>
+    </div> --}}
+
     <div class="site-wrap">
-
-
         <div class="site-navbar bg-white py-2">
 
             <div class="search-wrap">
@@ -104,9 +116,10 @@
                 <div class="container">
                     <div class="row">
                         <div class="col-md-6 col-lg-3 mb-4 mb-lg-0">
-                            <h3 class="footer-heading mb-4">Promo</h3>
+                            <h3 class="footer-heading mb-4">About Us</h3>
                             <a href="#" class="block-6">
-                                <img src="images/about_1.jpg" alt="Image placeholder" class="img-fluid rounded mb-4">
+                                <img src="{{ asset('users/images/about_1.jpg') }}" alt="Image placeholder"
+                                    class="img-fluid rounded mb-4">
                                 <h3 class="font-weight-light  mb-0">Finding Your Perfect Shirts This Summer</h3>
                                 <p>Promo from July 15 &mdash; 25, 2019</p>
                             </a>
@@ -124,20 +137,6 @@
                                         <li><a href="#">Store builder</a></li>
                                     </ul>
                                 </div>
-                                <div class="col-md-6 col-lg-4">
-                                    <ul class="list-unstyled">
-                                        <li><a href="#">Mobile commerce</a></li>
-                                        <li><a href="#">Dropshipping</a></li>
-                                        <li><a href="#">Website development</a></li>
-                                    </ul>
-                                </div>
-                                <div class="col-md-6 col-lg-4">
-                                    <ul class="list-unstyled">
-                                        <li><a href="#">Point of sale</a></li>
-                                        <li><a href="#">Hardware</a></li>
-                                        <li><a href="#">Software</a></li>
-                                    </ul>
-                                </div>
                             </div>
                         </div>
 
@@ -145,21 +144,16 @@
                             <div class="block-5 mb-5">
                                 <h3 class="footer-heading mb-4">Contact Info</h3>
                                 <ul class="list-unstyled">
-                                    <li class="address">203 Fake St. Mountain View, San Francisco, California,
-                                        USA</li>
-                                    <li class="phone"><a href="tel://23923929210">+2 392 3929 210</a></li>
-                                    <li class="email">emailaddress@domain.com</li>
+                                    <li class="address">Dargi Malakand , GT Road Mardan</li>
+                                    <li class="phone"><a href="tel://+923423601581">+923423601581</a></li>
+                                    <li class="email">programmerhero6@gmail.com</li>
                                 </ul>
                             </div>
 
                             <div class="block-7">
                                 <form action="#" method="post">
                                     <label for="email_subscribe" class="footer-heading">Subscribe</label>
-                                    <div class="form-group">
-                                        <input type="text" class="form-control py-4" id="email_subscribe"
-                                            placeholder="Email">
-                                        <input type="submit" class="btn btn-sm btn-primary" value="Send">
-                                    </div>
+                                    @livewire('subscribe')
                                 </form>
                             </div>
                         </div>
