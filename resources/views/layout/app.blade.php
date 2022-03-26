@@ -61,7 +61,7 @@
                 <div class="d-flex align-items-center justify-content-between">
                     <div class="logo">
                         <div class="site-logo">
-                            <a href="{{ route('home') }}" class="js-logo-clone">virtaul vectory-store</a>
+                            <a href="{{ route('home') }}" class="js-logo-clone">virtaul-vectory store</a>
                         </div>
                     </div>
                     <div class="main-nav d-none d-lg-block">
@@ -153,14 +153,12 @@
                     <div class="row pt-5 mt-5 text-center">
                         <div class="col-md-12">
                             <p>
-                                <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
                                 Copyright &copy;
                                 <script>
                                     document.write(new Date().getFullYear());
                                 </script> All rights reserved | This template is made with <i
                                     class="icon-heart" aria-hidden="true"></i> by <a href=""
                                     class="text-primary">Hilal ahmad</a>
-                                <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
                             </p>
                         </div>
 

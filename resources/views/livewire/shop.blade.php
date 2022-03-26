@@ -4,11 +4,43 @@
         </x-slot>
         <div class="site-section">
             <div class="container">
-
                 <div class="row mb-5">
-                    <div class="col-md-9 order-1">
+                    <div class="col-md-3 order-2 mb-5 mb-md-0">
+                        <div class="border p-4 rounded mb-4">
+                            <h3 class="mb-3 h6 text-uppercase text-black d-block">Search</h3>
+                            <ul class="list-unstyled mb-0">
+                                <input type="text" wire:model="search" class="form-control">
+                            </ul>
+                        </div>
+                        <div class="border p-4 rounded mb-4">
 
-                        <div class="row align">
+                            <h3 class="mb-3 h6 text-uppercase text-black d-block">Categories</h3>
+                            <ul class="list-unstyled mb-0">
+                                @foreach ($categorys as $category)
+                                    <li class="mb-1"><a href="#"
+                                            wire:click.prevent='getProuductByCat({{ $category->id }})'
+                                            class="d-flex"><span>{{ $category->category_name }}</span> <span
+                                                class="text-black ml-auto">(2,220)</span></a></li>
+                                @endforeach
+                            </ul>
+                        </div>
+
+                        <div class="border p-4 rounded mb-4">
+                            <h3 class="mb-3 h6 text-uppercase text-black d-block">Brands</h3>
+                            <ul class="list-unstyled mb-0">
+                                @foreach ($brands as $brand)
+                                    <li class="mb-1"><a href="#"
+                                            wire:click.prevent='getProuductByCat({{ $brand->id }})'
+                                            class="d-flex"><span>{{ $brand->brand_name }}</span> <span
+                                                class="text-black ml-auto">(2,220)</span></a></li>
+                                @endforeach
+
+                            </ul>
+                        </div>
+
+                    </div>
+                    <div class="col-md-9 order-1">
+                        <div class="row">
                             <div class="col-md-12 mb-5">
                                 <div class="float-md-left">
                                     <h2 class="text-black h5">Shop All</h2>
@@ -41,10 +73,7 @@
 
                                 </div>
                             @endforeach
-
-
                         </div>
-
                         <div class="row">
                             <div class="col-md-12 text-center">
                                 <div class="">
@@ -56,42 +85,7 @@
                         </div>
                     </div>
 
-                    <div class="col-md-3 order-2 mb-5 mb-md-0">
-                        <div class="border p-4 rounded mb-4">
 
-                            <h3 class="mb-3 h6 text-uppercase text-black d-block">Search</h3>
-                            <ul class="list-unstyled mb-0">
-                                <input type="text" wire:model="search" class="form-control">
-
-                            </ul>
-                        </div>
-                        <div class="border p-4 rounded mb-4">
-
-                            <h3 class="mb-3 h6 text-uppercase text-black d-block">Categories</h3>
-                            <ul class="list-unstyled mb-0">
-                                @foreach ($categorys as $category)
-                                    <li class="mb-1"><a href="#"
-                                            wire:click.prevent='getProuductByCat({{ $category->id }})'
-                                            class="d-flex"><span>{{ $category->category_name }}</span> <span
-                                                class="text-black ml-auto">(2,220)</span></a></li>
-                                @endforeach
-                            </ul>
-                        </div>
-
-                        <div class="border p-4 rounded mb-4">
-                            <h3 class="mb-3 h6 text-uppercase text-black d-block">Brands</h3>
-                            <ul class="list-unstyled mb-0">
-                                @foreach ($brands as $brand)
-                                    <li class="mb-1"><a href="#"
-                                            wire:click.prevent='getProuductByCat({{ $brand->id }})'
-                                            class="d-flex"><span>{{ $brand->brand_name }}</span> <span
-                                                class="text-black ml-auto">(2,220)</span></a></li>
-                                @endforeach
-
-                            </ul>
-                        </div>
-
-                    </div>
                 </div>
 
             </div>
