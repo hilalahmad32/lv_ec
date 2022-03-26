@@ -51,7 +51,7 @@
                                             <td>{{ $product->id }}</td>
                                             <td>{{ $product->title }}</td>
                                             <td>{{ $product->categorys->category_name }}</td>
-                                            <td>{{ $product->brands->brand_name }}</td>
+                                            {{-- <td>{{ $product->brands->brand_name }}</td> --}}
                                             <td>{{ $product->price }}</td>
                                             <td>{{ $product->stock }}</td>
                                             <td>{{ $product->views }}</td>
