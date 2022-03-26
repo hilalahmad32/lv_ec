@@ -40,13 +40,13 @@
                                     </h2>
                                     <strong class="item-price">$ {{ $popular->price }}</strong>
 
-                                    <div class="star-rating">
+                                    {{-- <div class="star-rating">
                                         <span class="icon-star2 text-warning"></span>
                                         <span class="icon-star2 text-warning"></span>
                                         <span class="icon-star2 text-warning"></span>
                                         <span class="icon-star2 text-warning"></span>
                                         <span class="icon-star2 text-warning"></span>
-                                    </div>
+                                    </div> --}}
                                 </div>
                             </div>
                         </div>

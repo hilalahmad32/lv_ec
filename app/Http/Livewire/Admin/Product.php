@@ -25,13 +25,29 @@ class Product extends Component
     public $stock;
     public $slug;
     public $image;
+
+    public $product_id;
+    public $edit_title;
+    public $edit_cat_id;
+    public $edit_brand_id;
+    public $edit_short_desc;
+    public $edit_long_desc;
+    public $edit_stock;
+    public $old_image;
+    public $new_image;
     public $brands;
     public $categories;
     public $search;
+    public $totalProducts;
     public function render()
     {
         $this->brands = Brand::orderBy('id', 'desc')->get();
         $this->categories = Category::orderBy('id', 'desc')->get();
+        $this->totalProducts = ModelsProduct::count();
+        if ($this->search != "") {
+            $products = ModelsProduct::where('title', 'LIKE', '%' . $this->search . '%')->orderBy('id', 'desc')->get();
+            return view('livewire.admin.product', compact('products'))->layout('layout.admin-app');
+        }
         $products = ModelsProduct::orderBy('id', 'desc')->get();
         return view('livewire.admin.product', compact('products'))->layout('layout.admin-app');
     }
@@ -47,6 +63,28 @@ class Product extends Component
         $this->showTable = true;
         $this->createForm = false;
         $this->updateForm = false;
+    }
+    public function resetField()
+    {
+        $this->title;
+        $this->cat_id;
+        $this->brand_id;
+        $this->short_desc;
+        $this->long_desc;
+        $this->price;
+        $this->stock;
+        $this->slug;
+        $this->image;
+
+        $this->product_id;
+        $this->edit_title;
+        $this->edit_cat_id;
+        $this->edit_brand_id;
+        $this->edit_short_desc;
+        $this->edit_long_desc;
+        $this->edit_stock;
+        $this->old_image;
+        $this->new_image;
     }
     use WithFileUploads;
     public function store()
@@ -79,10 +117,71 @@ class Product extends Component
         $products->stock = $this->stock;
         $products->slug = Str::slug($this->title);
         $products->image = $filename;
-        $products->save();
-        $this->goBack();
+        $result = $products->save();
+        if ($result) {
+            session()->flash('success', 'Product Add Successfully');
+            $this->goBack();
+            $this->resetField();
+        } else {
+            session()->flash('error', 'Server Problems');
+        }
     }
+    public function edit($id)
+    {
+        $this->showTable = false;
+        $this->updateForm = true;
+        $products = ModelsProduct::findOrFail($id);
+        $this->product_id = $products->id;
+        $this->edit_title = $products->title;
+        $this->edit_cat_id = $products->cat_id;
+        $this->edit_brand_id = $products->brand_id;
+        $this->edit_long_desc = $products->long_desc;
+        $this->edit_short_desc = $products->short_desc;
+        $this->edit_price = $products->price;
+        $this->edit_stock = $products->stock;
+        $this->old_image = $products->image;
+    }
+    public function update($id)
+    {
+        $products = ModelsProduct::findOrFail($id);
+        $this->validate([
+            'edit_title' => ['required', 'string', 'max:100', 'min:10'],
+            'edit_cat_id' => ['required'],
+            'edit_brand_id' => ['required'],
+            'edit_long_desc' => ['required', 'string', 'max:5000',],
+            'edit_short_desc' => ['required', 'string', 'max:1000'],
+            'edit_price' => 'required',
+            'edit_stock' => 'required',
+        ]);
 
+        $filename = "";
+        $destination = public_path('storage\\' . $products->image);
+        if ($this->new_image != "") {
+            if (File::exists($destination)) {
+                File::delete($destination);
+            }
+            $filename = $this->new_image->store('products', 'public');
+        } else {
+            $filename = $this->old_image;
+        }
+        $products->title = $this->edit_title;
+        $products->cat_id = $this->edit_cat_id;
+        $products->brand_id = $this->edit_brand_id;
+        $products->long_desc = $this->edit_long_desc;
+        $products->short_desc = $this->edit_short_desc;
+        $products->price = $this->edit_price;
+        $products->stock = $this->edit_stock;
+        $products->slug = Str::slug($this->edit_title);
+        $products->image = $filename;
+        $result = $products->save();
+        if ($result) {
+            session()->flash('success', 'Product Update Successfully');
+            $this->goBack();
+            $this->resetField();
+        } else {
+            session()->flash('error', 'Server Problems');
+        }
+    }
     public function delete($id)
     {
         $products = ModelsProduct::findOrFail($id);
@@ -91,6 +190,13 @@ class Product extends Component
         if (File::exists($destination)) {
             File::delete($destination);
         }
-        $products->delete();
+        $result = $products->delete();
+        if ($result) {
+            session()->flash('success', 'Product Delete Successfully');
+            $this->goBack();
+            $this->resetField();
+        } else {
+            session()->flash('error', 'Server Problems');
+        }
     }
 }

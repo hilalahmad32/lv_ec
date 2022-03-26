@@ -61,26 +61,23 @@
                 <div class="d-flex align-items-center justify-content-between">
                     <div class="logo">
                         <div class="site-logo">
-                            <a href="index.html" class="js-logo-clone">ShopMax</a>
+                            <a href="{{ route('home') }}" class="js-logo-clone">virtaul vectory-store</a>
                         </div>
                     </div>
                     <div class="main-nav d-none d-lg-block">
                         <nav class="site-navigation text-right text-md-center" role="navigation">
                             <ul class="site-menu js-clone-nav d-none d-lg-block">
-                                <li class="has-children active">
+                                <li class="{{ Request::routeIs('home') ? 'active' : '' }}">
                                     <a href="{{ route('home') }}">Home</a>
                                 </li>
-                                <li><a href="{{ route('shop') }}">Shop</a></li>
+                                <li class="{{ Request::routeIs('shop') ? 'active' : '' }}"><a
+                                        href="{{ route('shop') }}">Shop</a></li>
                                 <li><a href="contact.html">Contact</a></li>
-
-                                @auth
-                                    <li><a href="contact.html">Account</a></li>
-
-                                @endauth
-
                                 @guest
-                                    <li><a href="{{ route('login') }}">Login</a></li>
-                                    <li><a href="{{ route('signup') }}">Signup</a></li>
+                                    <li class="{{ Request::routeIs('login') ? 'active' : '' }}"><a
+                                            href="{{ route('login') }}">Login</a></li>
+                                    <li class="{{ Request::routeIs('signup') ? 'active' : '' }}"><a
+                                            href="{{ route('signup') }}">Signup</a></li>
                                 @endguest
 
                             </ul>
@@ -89,16 +86,11 @@
                     <div class="icons d-flex">
                         @auth
                             @livewire('logout')
-                        @endauth
-                        <a href="#" class="icons-btn d-inline-block js-search-open"><span
-                                class="icon-search"></span></a>
-
-                        <a href="#" class="icons-btn d-inline-block"><span class="icon-heart-o"></span></a>
-                        @auth
                             @livewire('get-total-card')
                         @endauth
                         @guest
-                            <a href="{{ route('card') }}" class="icons-btn d-inline-block bag">
+                            <a href="{{ route('card') }}"
+                                class="icons-btn d-inline-block bag {{ Request::routeIs('flight') ? 'active' : '' }}">
                                 <span class="icon-shopping-bag"></span>
                                 <span class="number">0</span>
                             </a>
@@ -166,8 +158,8 @@
                                 <script>
                                     document.write(new Date().getFullYear());
                                 </script> All rights reserved | This template is made with <i
-                                    class="icon-heart" aria-hidden="true"></i> by <a href="https://colorlib.com"
-                                    target="_blank" class="text-primary">Colorlib</a>
+                                    class="icon-heart" aria-hidden="true"></i> by <a href=""
+                                    class="text-primary">Hilal ahmad</a>
                                 <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
                             </p>
                         </div>

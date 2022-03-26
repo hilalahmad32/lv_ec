@@ -48,32 +48,32 @@
                 </div>
 
                 <ul class="nav">
-                    <li class="active">
+                    <li class="{{ Request::routeIs('dashboard') ? 'active' : '' }}">
                         <a href="{{ route('dashboard') }}">
                             <p>Dashboard</p>
                         </a>
                     </li>
-                    <li>
+                    <li class="{{ Request::routeIs('category') ? 'active' : '' }}">
                         <a href="{{ route('category') }}">
                             <p>Category</p>
                         </a>
                     </li>
-                    <li>
+                    <li class="{{ Request::routeIs('brand') ? 'active' : '' }}">
                         <a href="{{ route('brand') }}">
                             <p>Brand</p>
                         </a>
                     </li>
-                    <li>
+                    <li class="{{ Request::routeIs('product') ? 'active' : '' }}">
                         <a href="{{ route('product') }}">
                             <p>Product</p>
                         </a>
                     </li>
-                    <li>
+                    <li class="{{ Request::routeIs('review') ? 'active' : '' }}">
                         <a href="{{ route('review') }}">
                             <p>Reviews</p>
                         </a>
                     </li>
-                    <li>
+                    <li class="{{ Request::routeIs('users') ? 'active' : '' }}">
                         <a href="{{ route('users') }}">
                             <p>Users</p>
                         </a>
@@ -92,7 +92,7 @@
                             <span class="icon-bar bar2"></span>
                             <span class="icon-bar bar3"></span>
                         </button>
-                        <a class="navbar-brand" href="#">Dashboard</a>
+                        <a class="navbar-brand" href="{{ route('dashboard') }}">Dashboard</a>
                     </div>
                     <div class="collapse navbar-collapse">
                         <ul class="nav navbar-nav navbar-right">
@@ -102,7 +102,8 @@
                                     <b class="caret"></b>
                                 </a>
                                 <ul class="dropdown-menu">
-                                    <li><a href="{{ route('change-password') }}">Change Password</a></li>
+                                    <li class="{{ Request::routeIs('change-password') ? 'active' : '' }}"><a
+                                            href="{{ route('change-password') }}">Change Password</a></li>
                                     @livewire('admin.admin-logout')
                                 </ul>
                             </li>
