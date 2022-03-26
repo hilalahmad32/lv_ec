@@ -53,31 +53,49 @@ class Brand extends Component
             'brand_name' => ['required', 'string', 'max:35', 'min:3', 'unique:brands'],
         ]);
         $result = ModelsBrand::create($validate);
-        $this->goBack();
-        $this->resetField();
+        if ($result) {
+            session()->flash('success', 'Brand Add Successfully');
+            $this->goBack();
+            $this->resetField();
+        } else {
+            session()->flash('error', 'Server Problems');
+        }
     }
 
     public function edit($id)
     {
         $this->showTable = false;
         $this->updateForm = true;
-        $categories = ModelsBrand::findOrFail($id);
-        $this->brand_id = $categories->id;
-        $this->edit_brand_name = $categories->brand_name;
+        $brands = ModelsBrand::findOrFail($id);
+        $this->brand_id = $brands->id;
+        $this->edit_brand_name = $brands->brand_name;
     }
 
     public function update($id)
     {
-        $categories = ModelsBrand::findOrFail($id);
+        $brands = ModelsBrand::findOrFail($id);
         $this->validate([
             'edit_brand_name' => ['required', 'string', 'max:35', 'min:3'],
         ]);
-        $categories->brand_name = $this->edit_brand_name;
-        $categories->save();
-        $this->goBack();
+        $brands->brand_name = $this->edit_brand_name;
+        $result = $brands->save();
+        if ($result) {
+            session()->flash('success', 'Brand Update Successfully');
+            $this->goBack();
+            $this->resetField();
+        } else {
+            session()->flash('error', 'Server Problems');
+        }
     }
     public function delete($id)
     {
         $result = ModelsBrand::findOrFail($id)->delete();
+        if ($result) {
+            session()->flash('success', 'Brand Delete Successfully');
+            $this->goBack();
+            $this->resetField();
+        } else {
+            session()->flash('error', 'Server Problems');
+        }
     }
 }

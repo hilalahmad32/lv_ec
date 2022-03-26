@@ -6,6 +6,16 @@
         <div class="content" style="height:100vh;">
 
             <div class="container">
+                @if (session()->has('success'))
+                    <div class="alert alert-success custom-success">
+                        <strong>{{ session('success') }}</strong>
+                    </div>
+                @endif
+                @if (session()->has('error'))
+                    <div class="alert alert-danger custom-success">
+                        <strong>{{ session('error') }}</strong>
+                    </div>
+                @endif
                 <div class="col-lg-12 col-md-12">
                     <div class="card" style="width:90%;">
                         <div class="card-header" style="padding:10px 20px;">
@@ -105,7 +115,8 @@
                                             <select wire:model.lazy="brand_id" class="form-control border-input">
                                                 <option selected>Select Brand</option>
                                                 @foreach ($brands as $brand)
-                                                    <option value="{{ $brand->id }}">{{ $brand->brand_name }}
+                                                    <option value="{{ $brand->id }}">
+                                                        {{ $brand->brand_name }}
                                                     </option>
                                                 @endforeach
                                             </select>

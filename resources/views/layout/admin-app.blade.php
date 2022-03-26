@@ -50,44 +50,32 @@
                 <ul class="nav">
                     <li class="active">
                         <a href="{{ route('dashboard') }}">
-                            <i class="ti-panel"></i>
                             <p>Dashboard</p>
                         </a>
                     </li>
                     <li>
                         <a href="{{ route('category') }}">
-                            <i class="ti-user"></i>
                             <p>Category</p>
                         </a>
                     </li>
                     <li>
                         <a href="{{ route('brand') }}">
-                            <i class="ti-view-list-alt"></i>
                             <p>Brand</p>
                         </a>
                     </li>
                     <li>
                         <a href="{{ route('product') }}">
-                            <i class="ti-text"></i>
                             <p>Product</p>
                         </a>
                     </li>
                     <li>
                         <a href="{{ route('review') }}">
-                            <i class="ti-pencil-alt2"></i>
                             <p>Reviews</p>
                         </a>
                     </li>
                     <li>
                         <a href="{{ route('users') }}">
-                            <i class="ti-map"></i>
                             <p>Users</p>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="notifications.html">
-                            <i class="ti-bell"></i>
-                            <p>Orders</p>
                         </a>
                     </li>
                 </ul>
@@ -108,25 +96,14 @@
                     </div>
                     <div class="collapse navbar-collapse">
                         <ul class="nav navbar-nav navbar-right">
-                            <li>
-                                <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                                    <i class="ti-panel"></i>
-                                    <p>Stats</p>
-                                </a>
-                            </li>
                             <li class="dropdown">
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                                    <i class="ti-bell"></i>
-                                    <p class="notification">5</p>
-                                    <p>Notifications</p>
+                                    <p>{{ Auth::guard('admin')->user()->username }}</p>
                                     <b class="caret"></b>
                                 </a>
                                 <ul class="dropdown-menu">
-                                    <li><a href="#">Notification 1</a></li>
-                                    <li><a href="#">Notification 2</a></li>
-                                    <li><a href="#">Notification 3</a></li>
-                                    <li><a href="#">Notification 4</a></li>
-                                    <li><a href="#">Another notification</a></li>
+                                    <li><a href="{{ route('change-password') }}">Change Password</a></li>
+                                    @livewire('admin.admin-logout')
                                 </ul>
                             </li>
                         </ul>

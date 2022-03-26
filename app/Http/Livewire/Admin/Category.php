@@ -53,8 +53,13 @@ class Category extends Component
             'category_name' => ['required', 'string', 'max:35', 'min:3', 'unique:categories'],
         ]);
         $result = ModelsCategory::create($validate);
-        $this->goBack();
-        $this->resetField();
+        if ($result) {
+            session()->flash('success', 'Category Add Successfully');
+            $this->goBack();
+            $this->resetField();
+        } else {
+            session()->flash('error', 'Server Problems');
+        }
     }
 
     public function edit($id)
@@ -73,11 +78,24 @@ class Category extends Component
             'edit_category_name' => ['required', 'string', 'max:35', 'min:3'],
         ]);
         $categories->category_name = $this->edit_category_name;
-        $categories->save();
-        $this->goBack();
+        $result = $categories->save();
+        if ($result) {
+            session()->flash('success', 'Category Update Successfully');
+            $this->goBack();
+            $this->resetField();
+        } else {
+            session()->flash('error', 'Server Problems');
+        }
     }
     public function delete($id)
     {
         $result = ModelsCategory::findOrFail($id)->delete();
+        if ($result) {
+            session()->flash('success', 'Category Delete Successfully');
+            $this->goBack();
+            $this->resetField();
+        } else {
+            session()->flash('error', 'Server Problems');
+        }
     }
 }

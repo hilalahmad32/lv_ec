@@ -27,6 +27,7 @@ class Product extends Component
     public $image;
     public $brands;
     public $categories;
+    public $search;
     public function render()
     {
         $this->brands = Brand::orderBy('id', 'desc')->get();
@@ -74,7 +75,7 @@ class Product extends Component
         $products->long_desc = $this->long_desc;
         $products->short_desc = $this->short_desc;
         $products->price = $this->price;
-        $products->views = 0;
+        $products->views = 10;
         $products->stock = $this->stock;
         $products->slug = Str::slug($this->title);
         $products->image = $filename;

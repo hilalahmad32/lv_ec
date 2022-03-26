@@ -6,6 +6,16 @@
         <div class="content" style="height:100vh;">
 
             <div class="container">
+                @if (session()->has('success'))
+                    <div class="alert alert-success custom-success">
+                        <strong>{{ session('success') }}</strong>
+                    </div>
+                @endif
+                @if (session()->has('error'))
+                    <div class="alert alert-danger custom-success">
+                        <strong>{{ session('error') }}</strong>
+                    </div>
+                @endif
                 <div class="card" style="width:90%;">
                     <div class="card-header" style="padding:10px 20px;">
                         <div style="display: flex; justify-content: space-between; align-items:baseline;">

@@ -11,8 +11,10 @@
                         <thead>
                             <tr>
                                 <th>ID</th>
-                                <th>brand</th>
-                                <th>Status</th>
+                                <th>Rating</th>
+                                <th>Reviews</th>
+                                <th>Product</th>
+                                <th>Username</th>
                                 <th>Action</th>
                             </tr>
                         </thead>
