@@ -25,7 +25,7 @@ class Login extends Component
         $admins = Auth::guard('admin')->attempt(['username' => $this->username, 'password' => $this->password]);
         if ($admins) {
             session()->flash('success', 'Login Successfully');
-            return redirect(route('dashboard'));
+            return redirect(route('admin.dashboard'));
         } else {
             session()->flash('error', 'Invalid email and password');
         }

@@ -10,10 +10,6 @@ class User extends Component
     public $search;
     public function render()
     {
-        if ($this->search != "") {
-            $users = ModelsUser::where('username', 'LIKE', '%' . $this->search . '%')->orderBy('id', 'desc')->get();
-            return view('livewire.admin.review', compact('users'))->layout('layout.admin-app');
-        }
         $users = ModelsUser::orderBy('id', 'desc')->get();
         return view('livewire.admin.user', compact('users'))->layout('layout.admin-app');
     }

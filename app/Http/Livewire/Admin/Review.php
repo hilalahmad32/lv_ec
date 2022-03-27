@@ -17,4 +17,9 @@ class Review extends Component
         $reviews = ModelsReview::orderBy('id', 'desc')->get();
         return view('livewire.admin.review', compact('reviews'))->layout('layout.admin-app');
     }
+
+    public function delete($id)
+    {
+        ModelsReview::findOrFail($id)->delete();
+    }
 }

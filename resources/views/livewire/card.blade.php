@@ -99,7 +99,8 @@
 
                             <div class="row">
                                 <div class="col-md-12">
-                                    <button class="btn btn-primary btn-lg btn-block">Proceed To Checkout</button>
+                                    <a href="{{ route('order') }}" class="btn btn-primary btn-lg btn-block">Proceed
+                                        To Checkout</a>
                                 </div>
                             </div>
                         </div>

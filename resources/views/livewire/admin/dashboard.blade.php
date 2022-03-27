@@ -24,7 +24,8 @@
                                 <div class="footer">
                                     <hr />
                                     <div class="stats">
-                                        <a href="{{ route('category') }}"><i class="ti-arrow-right"></i> View All</a>
+                                        <a href="{{ route('admin.category') }}"><i class="ti-arrow-right"></i> View
+                                            All</a>
                                     </div>
                                 </div>
                             </div>
@@ -49,7 +50,8 @@
                                 <div class="footer">
                                     <hr />
                                     <div class="stats">
-                                        <a href="{{ route('brand') }}"><i class="ti-arrow-right"></i> View All</a>
+                                        <a href="{{ route('admin.brand') }}"><i class="ti-arrow-right"></i> View
+                                            All</a>
                                     </div>
                                 </div>
                             </div>
@@ -74,7 +76,8 @@
                                 <div class="footer">
                                     <hr />
                                     <div class="stats">
-                                        <a href="{{ route('product') }}"><i class="ti-arrow-right"></i> View All</a>
+                                        <a href="{{ route('admin.product') }}"><i class="ti-arrow-right"></i> View
+                                            All</a>
 
                                     </div>
                                 </div>
@@ -100,7 +103,8 @@
                                 <div class="footer">
                                     <hr />
                                     <div class="stats">
-                                        <a href=""><i class="ti-arrow-right"></i> View All</a>
+                                        <a href="{{ route('admin.users') }}"><i class="ti-arrow-right"></i> View
+                                            All</a>
                                     </div>
                                 </div>
                             </div>
@@ -127,7 +131,8 @@
                                 <div class="footer">
                                     <hr />
                                     <div class="stats">
-                                        <a href="{{ route('category') }}"><i class="ti-arrow-right"></i> View All</a>
+                                        <a href="{{ route('admin.review') }}"><i class="ti-arrow-right"></i> View
+                                            All</a>
                                     </div>
                                 </div>
                             </div>
@@ -152,7 +157,8 @@
                                 <div class="footer">
                                     <hr />
                                     <div class="stats">
-                                        <a href="{{ route('brand') }}"><i class="ti-arrow-right"></i> View All</a>
+                                        <a href=""><i class="ti-arrow-right"></i> View
+                                            All</a>
                                     </div>
                                 </div>
                             </div>

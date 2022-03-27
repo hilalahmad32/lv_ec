@@ -40,7 +40,7 @@
 
                     </div>
                     <div class="col-md-9 order-1">
-                        <div class="row">
+                        <div class="row align">
                             <div class="col-md-12 mb-5">
                                 <div class="float-md-left">
                                     <h2 class="text-black h5">Shop All</h2>
@@ -70,7 +70,6 @@
                                             </div> --}}
                                         </div>
                                     </div>
-
                                 </div>
                             @endforeach
                         </div>

@@ -1,6 +1,6 @@
 <div>
     <x-slot:title>
-        User
+        Contact
         </x-slot>
         <div class="container">
             <div class="card" style="width:90%;">
@@ -12,20 +12,22 @@
                                 <th>First Name</th>
                                 <th>Last Name</th>
                                 <th>Email</th>
-                                <th>Username</th>
+                                <th>Subject</th>
+                                <th>Message</th>
                                 <th>Action</th>
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach ($users as $user)
+                            @foreach ($contacts as $contact)
                                 <tr>
-                                    <td>{{ $user->id }}</td>
-                                    <td>{{ $user->fname }}</td>
-                                    <td>{{ $user->lname }}</td>
-                                    <td>{{ $user->email }}</td>
-                                    <td>{{ $user->username }}</td>
+                                    <td>{{ $contact->id }}</td>
+                                    <td>{{ $contact->fname }}</td>
+                                    <td>{{ $contact->lname }}</td>
+                                    <td>{{ $contact->email }}</td>
+                                    <td>{{ $contact->subject }}</td>
+                                    <td>{{ $contact->message }}</td>
                                     <td>
-                                        <span wire:click='delete({{ $user->id }})' class="ti-trash"
+                                        <span wire:click='delete({{ $contact->id }})' class="ti-trash"
                                             style="cursor: pointer;"></span>
                                     </td>
                                 </tr>

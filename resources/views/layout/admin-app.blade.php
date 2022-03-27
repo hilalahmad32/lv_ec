@@ -48,34 +48,49 @@
                 </div>
 
                 <ul class="nav">
-                    <li class="{{ Request::routeIs('dashboard') ? 'active' : '' }}">
-                        <a href="{{ route('dashboard') }}">
+                    <li class="{{ Request::routeIs('admin.dashboard') ? 'active' : '' }}">
+                        <a href="{{ route('admin.dashboard') }}">
                             <p>Dashboard</p>
                         </a>
                     </li>
-                    <li class="{{ Request::routeIs('category') ? 'active' : '' }}">
-                        <a href="{{ route('category') }}">
+                    <li class="{{ Request::routeIs('admin.category') ? 'active' : '' }}">
+                        <a href="{{ route('admin.category') }}">
                             <p>Category</p>
                         </a>
                     </li>
-                    <li class="{{ Request::routeIs('brand') ? 'active' : '' }}">
-                        <a href="{{ route('brand') }}">
+                    <li class="{{ Request::routeIs('admin.brand') ? 'active' : '' }}">
+                        <a href="{{ route('admin.brand') }}">
                             <p>Brand</p>
                         </a>
                     </li>
-                    <li class="{{ Request::routeIs('product') ? 'active' : '' }}">
-                        <a href="{{ route('product') }}">
+                    <li class="{{ Request::routeIs('admin.product') ? 'active' : '' }}">
+                        <a href="{{ route('admin.product') }}">
                             <p>Product</p>
                         </a>
                     </li>
-                    <li class="{{ Request::routeIs('review') ? 'active' : '' }}">
-                        <a href="{{ route('review') }}">
+                    <li class="{{ Request::routeIs('admin.review') ? 'active' : '' }}">
+                        <a href="{{ route('admin.review') }}">
                             <p>Reviews</p>
                         </a>
                     </li>
-                    <li class="{{ Request::routeIs('users') ? 'active' : '' }}">
-                        <a href="{{ route('users') }}">
+                    <li class="{{ Request::routeIs('admin.users') ? 'active' : '' }}">
+                        <a href="{{ route('admin.users') }}">
                             <p>Users</p>
+                        </a>
+                    </li>
+                    <li class="{{ Request::routeIs('admin.order') ? 'active' : '' }}">
+                        <a href="{{ route('admin.order') }}">
+                            <p>Order</p>
+                        </a>
+                    </li>
+                    <li class="{{ Request::routeIs('admin.setting') ? 'active' : '' }}">
+                        <a href="{{ route('admin.setting') }}">
+                            <p>Setting</p>
+                        </a>
+                    </li>
+                    <li class="{{ Request::routeIs('admin.contact') ? 'active' : '' }}">
+                        <a href="{{ route('admin.contact') }}">
+                            <p>Contact</p>
                         </a>
                     </li>
                 </ul>
@@ -92,7 +107,7 @@
                             <span class="icon-bar bar2"></span>
                             <span class="icon-bar bar3"></span>
                         </button>
-                        <a class="navbar-brand" href="{{ route('dashboard') }}">Dashboard</a>
+                        <a class="navbar-brand" href="{{ route('admin.dashboard') }}">Dashboard</a>
                     </div>
                     <div class="collapse navbar-collapse">
                         <ul class="nav navbar-nav navbar-right">
@@ -102,8 +117,8 @@
                                     <b class="caret"></b>
                                 </a>
                                 <ul class="dropdown-menu">
-                                    <li class="{{ Request::routeIs('change-password') ? 'active' : '' }}"><a
-                                            href="{{ route('change-password') }}">Change Password</a></li>
+                                    <li class="{{ Request::routeIs('admin.change-password') ? 'active' : '' }}"><a
+                                            href="{{ route('admin.change-password') }}">Change Password</a></li>
                                     @livewire('admin.admin-logout')
                                 </ul>
                             </li>
